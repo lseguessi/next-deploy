@@ -1,5 +1,8 @@
+'use client';
 import NavBar from "@/components/NavBar";
-import React from "react";
+import { usePathname, useSearchParams } from 'next/navigation'
+import React, { useEffect } from "react";
+import { useRouter } from 'next/navigation'
 
 export default function Contato() {
   return (
