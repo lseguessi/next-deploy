@@ -20,7 +20,6 @@ phases:
       # - yarn export
   post_build:
     commands:
-      - yarn export
       - mkdir ../build-output
       - cp -r out/* ../build-output
       - rm -rf *
