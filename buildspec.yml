@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - n 18
+  #      - apt-get update -y
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+      - npm install yarn -g
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - yarn deploy
+      # - yarn export
+  post_build:
+    commands:
+      - yarn export
+      - mkdir ../build-output
+      - cp -r out/* ../build-output
+      - rm -rf *
+      - cp -r ../build-output/* .
+artifacts:
+  files:
+    - "**/*"
