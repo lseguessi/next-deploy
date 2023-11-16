@@ -1,7 +1,33 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function NavBar() {
+  const [number, setnumber] = useState<number>()
+
+
+  useEffect(() => {
+    const randomNumber = gerarNumeroAleatorio();
+    setnumber(randomNumber);
+
+    console.log(randomNumber);
+  }, [])
+  
+  
+  function gerarNumeroAleatorio() {
+    // Gera um número decimal aleatório entre 0 (inclusive) e 1 (exclusive)
+    var numeroDecimal = Math.random();
+  
+    // Multiplica o número por 10 para obter um valor entre 0 (inclusive) e 10 (exclusive)
+    var numeroEntre0e10 = numeroDecimal * 10;
+  
+    // Arredonda para baixo para garantir um número inteiro entre 0 e 9
+    var numeroInteiro = Math.floor(numeroEntre0e10);
+  
+    // Adiciona 1 para obter um número entre 1 e 10
+    var numeroFinal = numeroInteiro + 1;
+  
+    return numeroFinal;
+  }
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -74,7 +100,7 @@ export default function NavBar() {
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   href={{
                     pathname: '/contato',
-                    query: { name: 'Contato', date: new Date().toISOString() }
+                    query: { name: 'Contato', date: new Date().toISOString(), number: number }
                   }}
                   >
                   Contato

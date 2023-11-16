@@ -1,3 +1,4 @@
+"use client"
 import Accordion from "@/components/Accordion";
 import NavBar from "@/components/NavBar";
 import React from "react";
